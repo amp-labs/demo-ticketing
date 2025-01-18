@@ -33,5 +33,25 @@ The app does the following:
 
 ![Architecture](./client/images/architecture.png)
 
-Here we assume you're a meeting recorder that uses AI magic to summarise meetings and syncs the tasks that get identified in the transcriptions to a ticketing tool like Asana. 
+Here we assume you're a meeting recorder that uses AI magic✨ to summarise meetings and syncs the tasks that get identified in the transcriptions to a ticketing tool like Asana. 
 
+
+
+# Client
+
+To run the client, follow these steps:
+
+1. Navigate to the `client` directory:
+   ```sh
+   cd client
+   ```
+
+2. Install the dependencies:
+   ```sh
+   yarn install
+   ```
+
+3. Run locally: 
+    ```sh
+    yarn dev
+    ```

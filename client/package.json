@@ -1,0 +1,55 @@
+{
+    "name": "@amp-labs/demo-ticketing",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "vite --force",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@amp-labs/react": "*",
+        "@emotion/react": "^11.13.3",
+        "@emotion/styled": "^11.13.0",
+        "@radix-ui/react-select": "^2.1.4",
+        "@radix-ui/react-slot": "^1.1.1",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "dlx": "^0.2.1",
+        "framer-motion": "^11.3.30",
+        "init": "^0.1.2",
+        "lucide-react": "^0.473.0",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "react-script-hook": "^1.7.2",
+        "shadcn": "^2.1.8",
+        "tailwind-merge": "^2.6.0",
+        "tailwindcss-animate": "^1.0.7"
+    },
+    "devDependencies": {
+        "@babel/core": "7.17.8",
+        "@types/node": "^22.10.7",
+        "@types/react": "^18.0.0",
+        "@types/react-dom": "^18.0.0",
+        "@vitejs/plugin-react": "1.2.0",
+        "acorn-jsx": "5.3.2",
+        "autoprefixer": "^10.4.20",
+        "babel-loader": "8.2.4",
+        "json": "11.0.0",
+        "postcss": "^8.5.1",
+        "tailwindcss": "^3.4.17",
+        "typescript": "5.1.6",
+        "vite": "2.8.6",
+        "vite-plugin-dts": "1.0.3"
+    },
+    "license": "MIT",
+    "peerDependencies": {
+        "react": "16.8.0 || 17.x || 18.x",
+        "react-dom": "16.8.0 || 17.x || 18.x"
+    },
+    "files": [
+        "dist"
+    ],
+    "engines": {
+        "node": ">=16.0.0"
+    }
+}
