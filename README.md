@@ -25,6 +25,8 @@ The app does the following:
 2. Exposes an API that accepts tasks that need to sync to the ticketing tool. 
 
 
+
+
 # Architecture 
 
 
@@ -36,6 +38,22 @@ The app does the following:
 Here we assume you're a meeting recorder that uses AI magic✨ to summarise meetings and syncs the tasks that get identified in the transcriptions to a ticketing tool like Asana. 
 
 
+
+# Directory Structure
+
+```
+demo-ticketing-ampersand/
+├── client/                     # Frontend React application
+│   ├── src/
+│   │   ├── components/         # React components
+│   │   ├── App.tsx             # Main application component
+│   │   └── main.tsx            # Application entry point
+│   └── images/                 # Image assets
+└── server/                     # Backend application (Express)
+    ├── src/
+        ├── routes/             # API route handlers
+        └── services/           # Business logic and services
+```
 
 # Client
 
