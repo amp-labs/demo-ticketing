@@ -16,3 +16,22 @@
 # Ampersand demo app for Ticketing Integrations (Asana, Clickup, Monday.com)
 
 This is a demo app to demonstrate the use of the Ampersand to build an integration use case where we write to ticketing systems such as Asana. 
+
+
+# Overview 
+
+The app does the following: 
+1. Allows your user to connect to their ticketing system of choice (Asana for now). 
+2. Exposes an API that accepts tasks that need to sync to the ticketing tool. 
+
+
+# Architecture 
+
+
+### This app focuses on the Asana Integration Service that is powered by Ampersand. 
+
+
+![Architecture](./client/images/architecture.png)
+
+Here we assume you're a meeting recorder that uses AI magic to summarise meetings and syncs the tasks that get identified in the transcriptions to a ticketing tool like Asana. 
+
