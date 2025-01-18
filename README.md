@@ -33,7 +33,7 @@ The app does the following:
 ### This app focuses on the Asana Integration Service that is powered by Ampersand. 
 
 
-![Architecture](./client/images/architecture.png)
+<img src="./client/images/architecture.png" width="600" />
 
 Here we assume you're a meeting recorder that uses AI magic✨ to summarise meetings and syncs the tasks that get identified in the transcriptions to a ticketing tool like Asana. 
 
@@ -42,7 +42,7 @@ Here we assume you're a meeting recorder that uses AI magic✨ to summarise meet
 # Directory Structure
 
 ```
-demo-ticketing-ampersand/
+demo-ticketing/
 ├── client/                     # Frontend React application
 │   ├── src/
 │   │   ├── components/         # React components
@@ -56,6 +56,8 @@ demo-ticketing-ampersand/
 ```
 
 # Client
+
+<img src="./client/images/integration_section.png" width="600" />
 
 To run the client, follow these steps:
 
