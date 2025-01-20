@@ -75,3 +75,16 @@ To run the client, follow these steps:
     ```sh
     yarn dev
     ```
+
+
+
+# Ampersand configuration
+
+The Ampersand configuration is defined in the `amp.yml` file located in the `amp` directory. This file specifies the integrations and their respective settings.
+
+
+### Ensure the amp configuration is deployed
+
+```sh
+amp deploy ./amp --project <YOUR_AMPERSAND_PROJECTID>
+```

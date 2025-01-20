@@ -1,0 +1,18 @@
+specVersion: 1.0.0
+integrations:
+  - name: writeTasksToAsana
+    displayName: Write Tasks to Asana
+    provider: asana
+    proxy:
+      enabled: true
+
+  # - name: writeTasksToClickup
+  #   displayName: Write Tasks to Clickup
+  #   provider: clickup
+  #   proxy:
+  #     enabled: true
+  # - name: writeTasksToMonday
+  #   displayName: Write Tasks to Monday
+  #   provider: monday
+  #   proxy:
+  #     enabled: true
