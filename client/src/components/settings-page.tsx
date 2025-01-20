@@ -1,13 +1,6 @@
-import { Globe, Link2, Mail } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { ConnectProvider } from "@amp-labs/react";
 
 export default function SettingsPage() {
   return (
@@ -15,9 +8,11 @@ export default function SettingsPage() {
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Integrations Section */}
         <section>
-          <h2 className="text-sm font-medium text-zinc-400 mb-4">INTEGRATIONS</h2>
+          <h2 className="text-sm font-medium text-zinc-400 mb-4">
+            INTEGRATIONS
+          </h2>
           <div className="space-y-3">
-          <Card className="bg-zinc-800/50 border-zinc-700">
+            <Card className="bg-zinc-800/50 border-zinc-700">
               <div className="p-4 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded bg-[#fff] flex items-center justify-center">
@@ -32,16 +27,19 @@ export default function SettingsPage() {
                   <div>
                     <h3 className="font-semibold text-zinc-100">Asana</h3>
                     <p className="text-sm text-zinc-400">
-                      Sync tasks to Asana from meeting summaries {' '}
-
+                      Sync tasks to Asana from meeting summaries{" "}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="text-sm text-zinc-400">0 of 3 seats in use</span>
-                  <Button variant="outline" className="text-blue-400 border-blue-400/20">
-                    Connect
-                  </Button>
+                  <ConnectProvider
+                    provider="asana"
+                    consumerRef={"demo-ticketing-ampersand-user"}
+                    consumerName={"demo-ticketing-ampersand-user"}
+                    groupRef={"demo-ticketing-ampersand-team"}
+                    groupName={"demo-ticketing-ampersand-team"}
+                    onConnectSuccess={() => console.log("Connected to Asana")}
+                  />
                 </div>
               </div>
             </Card>
@@ -64,7 +62,6 @@ export default function SettingsPage() {
                     </p>
                   </div>
                 </div>
-
               </div>
             </Card>
 
@@ -83,12 +80,15 @@ export default function SettingsPage() {
                   <div>
                     <h3 className="font-semibold text-zinc-100">Salesforce</h3>
                     <p className="text-sm text-zinc-400">
-                      Sync call summaries & highlights to matching Contacts, Accounts, and open Opportunities.{" "}
+                      Sync call summaries & highlights to matching Contacts,
+                      Accounts, and open Opportunities.{" "}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="text-sm text-zinc-400">0 of 3 seats in use</span>
+                  <span className="text-sm text-zinc-400">
+                    0 of 3 seats in use
+                  </span>
                 </div>
               </div>
             </Card>
@@ -108,21 +108,21 @@ export default function SettingsPage() {
                   <div>
                     <h3 className="font-semibold text-zinc-100">HubSpot</h3>
                     <p className="text-sm text-zinc-400">
-                      Sync call summaries & highlights to matching Contacts, Companies and open Deals{" "}
+                      Sync call summaries & highlights to matching Contacts,
+                      Companies and open Deals{" "}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="text-sm text-zinc-400">0 of 3 seats in use</span>
+                  <span className="text-sm text-zinc-400">
+                    0 of 3 seats in use
+                  </span>
                 </div>
               </div>
             </Card>
-
-
           </div>
         </section>
       </div>
     </div>
-  )
+  );
 }
-
