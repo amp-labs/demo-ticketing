@@ -1,13 +1,13 @@
 import express from 'express';
 import axios from 'axios';
 import { z } from 'zod';
+import cors from 'cors';
 
 // Configuration and constants
-// const ASANA_API_URL = 'https://app.asana.com/api/1.0';
 const MAX_BATCH_SIZE = 50;
 const RATE_LIMIT_DELAY = 100; // ms between requests
 
-// Apollo API configuration
+// Asana API configuration
 const AMP_PROXY_BASE_URL = "https://proxy.withampersand.com";
 
 // Individual task validation schema
@@ -50,11 +50,12 @@ export class AsanaTaskService {
 
     async createTask(taskData: any) {
         try {
-            const response = await this.axiosInstance.post('/tasks', {
+            const response = await this.axiosInstance.post('/1.0/tasks', {
                 data: taskData
             });
             return response.data.data;
-        } catch (error) {
+        } catch (error :any) {
+          console.log("Error creating task", error, error?.response?.data)
             throw this.handleAsanaError(error);
         }
     }
@@ -180,6 +181,7 @@ const app = express();
 const port = 4001;
 
 // Middleware
+app.use(cors()); // Enable CORS for all origins
 app.use(express.json());
 
 // Router setup

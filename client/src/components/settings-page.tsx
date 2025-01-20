@@ -31,14 +31,16 @@ export default function SettingsPage() {
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 p-3 m-3">
                   <ConnectProvider
                     provider="asana"
                     consumerRef={"demo-ticketing-ampersand-user"}
                     consumerName={"demo-ticketing-ampersand-user"}
-                    groupRef={"demo-ticketing-ampersand-team"}
-                    groupName={"demo-ticketing-ampersand-team"}
-                    onConnectSuccess={() => console.log("Connected to Asana")}
+                    groupRef={"demo-ticketing-ampersand-team-1"}
+                    groupName={"demo-ticketing-ampersand-team-1"}
+                    onConnectSuccess={(c) => {console.log("Connected to Asana", c);
+
+                    }}
                   />
                 </div>
               </div>
@@ -133,7 +135,7 @@ export default function SettingsPage() {
               <Button 
                 onClick={async () => {
                   try {
-                    const response = await fetch('http://localhost:4001/api/create-tasks', {
+                    const response = await fetch(`${process.env.BASE_API_URL || "http://localhost:4001"}/api/create-tasks`, {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',
@@ -144,20 +146,18 @@ export default function SettingsPage() {
                             title: "Follow up with client",
                             description: "Schedule follow-up meeting to discuss requirements",
                             dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days from now
-                            projectId: "5555555555",
-                            tags: ["client", "follow-up"]
+                            projects: { gid: "1209100538438555", resource_type: "project", name: "Integration's first team"},
                           },
                           {
                             title: "Prepare presentation",
                             description: "Create slides for next week's meeting",
                             dueDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(), // 5 days from now
-                            projectId: "5555555555",
-                            tags: ["presentation"]
+                            projects: { gid: "1209100538438555", resource_type: "project", name: "Integration's first team" },
                           }
                         ],
-                        workspaceId: "9876543210",
-                        assigneeId: "1234567890",
-                        meetingId: "123e4567-e89b-12d3-a456-426614174000"
+                        workspaceId: "1206661566061885", // Worskpace ID to which the tasks will be created in 
+                        assigneeId: "1209100522043955", // User ID to which the tasks will be assigned to
+                        meetingId: "123e4567-e89b-12d3-a456-426614174000" // Meeting ID to which the tasks will be created from
                       })
                     });
                     
@@ -165,10 +165,10 @@ export default function SettingsPage() {
                       throw new Error('Failed to create tasks');
                     }
                     
-                    alert('Tasks created successfully!');
+                    console.log('Tasks created successfully!');
                   } catch (error) {
                     console.error('Error creating tasks:', error);
-                    alert('Failed to create tasks. Check console for details.');
+                    console.log('Failed to create tasks. Check console for details.');
                   }
                 }}
                 variant="outline"
