@@ -7,6 +7,10 @@ const GROUP_REF = "demo-ticketing-ampersand-team-8";
 const CONSUMER_REF = "demo-ticketing-ampersand-user";
 const PROVIDER = "asana";
 const API_KEY = "VUII4VN2M7LTIH4Z56GAHETL4T72GLO2MA4W6NY";
+const ASANA_WORKSPACE_ID = "1206661566061885";
+const ASANA_USER_ID = "1209100522043955";
+const ASANA_PROJECT_ID = "1209100538438555";
+const ASANA_PROJECT_NAME = "Integration's first team";
 
 export default function SettingsPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -245,11 +249,13 @@ export default function SettingsPage() {
                               dueDate: new Date(
                                 Date.now() + 7 * 24 * 60 * 60 * 1000
                               ).toISOString(), // 7 days from now
-                              projects: {
-                                gid: "1209100538438555",
-                                resource_type: "project",
-                                name: "Integration's first team",
-                              },
+                              projects: [
+                                {
+                                  gid: ASANA_PROJECT_ID,
+                                  resource_type: "project",
+                                  name: ASANA_PROJECT_NAME,
+                                },
+                              ],
                             },
                             {
                               title: "Prepare presentation",
@@ -258,15 +264,17 @@ export default function SettingsPage() {
                               dueDate: new Date(
                                 Date.now() + 5 * 24 * 60 * 60 * 1000
                               ).toISOString(), // 5 days from now
-                              projects: {
-                                gid: "1209100538438555",
-                                resource_type: "project",
-                                name: "Integration's first team",
-                              },
+                              projects: [
+                                {
+                                  gid: ASANA_PROJECT_ID,
+                                  resource_type: "project",
+                                  name: ASANA_PROJECT_NAME,
+                                },
+                              ],
                             },
                           ],
-                          workspaceId: "1206661566061885", // Worskpace ID to which the tasks will be created in
-                          assigneeId: "1209100522043955", // User ID to which the tasks will be assigned to
+                          workspaceId: ASANA_WORKSPACE_ID, // Worskpace ID to which the tasks will be created in
+                          assigneeId: ASANA_USER_ID, // User ID to which the tasks will be assigned to
                           meetingId: "123e4567-e89b-12d3-a456-426614174000", // Meeting ID to which the tasks will be created from
                         }),
                       }
