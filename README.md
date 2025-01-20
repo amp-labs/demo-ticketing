@@ -92,7 +92,29 @@ amp deploy ./amp --project <YOUR_AMPERSAND_PROJECTID>
 
 # Server 
 
-How to use the task creation API 
+
+To run the server, follow these steps:
+
+1. Navigate to the `server` directory:
+   ```sh
+   cd server
+   ```
+
+2. Install the dependencies:
+   ```sh
+   pnpm install
+   ```
+
+
+4. Start the server:
+   ```sh
+   pnpm start
+   ```
+
+5. The server will be running on `http://localhost:4001`.
+
+
+#### How to use the task creation API 
 
 
 ```sh

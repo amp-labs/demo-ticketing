@@ -175,14 +175,25 @@ Created via Meeting Recorder
     }
 }
 
-// Express router setup
+// Express app setup
+const app = express();
+const port = 4001;
+
+// Middleware
+app.use(express.json());
+
+// Router setup
 const router = express.Router();
 
-
 const asanaService = new AsanaTaskService(process.env.AMP_API_KEY!);
-
 const taskController = new TaskController(asanaService);
 
 router.post('/create-tasks', taskController.createBulkTasks.bind(taskController));
 
-export { router as taskRouter };
+// Mount router
+app.use('/api', router);
+
+// Start server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});

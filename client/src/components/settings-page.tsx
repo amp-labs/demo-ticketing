@@ -133,7 +133,7 @@ export default function SettingsPage() {
               <Button 
                 onClick={async () => {
                   try {
-                    const response = await fetch('/api/create-tasks', {
+                    const response = await fetch('http://localhost:4001/api/create-tasks', {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',
