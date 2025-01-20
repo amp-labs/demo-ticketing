@@ -122,6 +122,63 @@ export default function SettingsPage() {
             </Card>
           </div>
         </section>
+        
+        {/* Test Task Creation Section */}
+        <section>
+          <h2 className="text-sm font-medium text-zinc-400 mb-4 mt-8">
+            Create tasks in Asana
+          </h2>
+          <Card className="bg-zinc-800/50 border-zinc-700">
+            <div className="p-4">
+              <Button 
+                onClick={async () => {
+                  try {
+                    const response = await fetch('/api/create-tasks', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({
+                        tasks: [
+                          {
+                            title: "Follow up with client",
+                            description: "Schedule follow-up meeting to discuss requirements",
+                            dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days from now
+                            projectId: "5555555555",
+                            tags: ["client", "follow-up"]
+                          },
+                          {
+                            title: "Prepare presentation",
+                            description: "Create slides for next week's meeting",
+                            dueDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(), // 5 days from now
+                            projectId: "5555555555",
+                            tags: ["presentation"]
+                          }
+                        ],
+                        workspaceId: "9876543210",
+                        assigneeId: "1234567890",
+                        meetingId: "123e4567-e89b-12d3-a456-426614174000"
+                      })
+                    });
+                    
+                    if (!response.ok) {
+                      throw new Error('Failed to create tasks');
+                    }
+                    
+                    alert('Tasks created successfully!');
+                  } catch (error) {
+                    console.error('Error creating tasks:', error);
+                    alert('Failed to create tasks. Check console for details.');
+                  }
+                }}
+                variant="outline"
+                className="w-full"
+              >
+                Create Test Tasks
+              </Button>
+            </div>
+          </Card>
+        </section>
       </div>
     </div>
   );
