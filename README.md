@@ -13,10 +13,15 @@
 
 </div>
 
-# Ampersand demo app for Ticketing Integrations (Asana, Clickup, Monday.com)
+# Ampersand demo app for Ticketing Integrations
 
 This is a demo app to demonstrate the use of the Ampersand to build an integration use case where we write to ticketing systems such as Asana. 
 
+Current Support: 
+
+- [x] Asana
+- [ ] Clickup
+- [ ] Monday.com
 
 # Overview 
 
