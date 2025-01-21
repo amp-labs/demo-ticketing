@@ -33,7 +33,7 @@ The app does the following:
 ### This app focuses on the Asana Integration Service that is powered by Ampersand. 
 
 
-<img src="./client/images/architecture.png" width="600" />
+<img src="./client/public/images/architecture.png" width="600" />
 
 Here we assume you're a meeting recorder that uses AI magic✨ to summarise meetings and syncs the tasks that get identified in the transcriptions to a ticketing tool like Asana. 
 
@@ -57,7 +57,7 @@ demo-ticketing/
 
 # Client
 
-<img src="./client/images/integration_section.png" width="600" />
+<img src="./client/public/images/integration_section.png" width="600" />
 
 To run the client, follow these steps:
 

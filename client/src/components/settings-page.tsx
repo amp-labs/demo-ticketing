@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 
 const PROJECT_ID = "b16ceb79-37d7-47d6-ad45-11e05825169d";
-const GROUP_REF = "demo-ticketing-ampersand-team-8";
+const GROUP_REF = "demo-ticketing-ampersand-team-" + Date.now().toLocaleString();
 const CONSUMER_REF = "demo-ticketing-ampersand-user";
 const PROVIDER = "asana";
 const API_KEY = "VUII4VN2M7LTIH4Z56GAHETL4T72GLO2MA4W6NY";
@@ -15,6 +15,7 @@ const ASANA_PROJECT_NAME = "Integration's first team";
 export default function SettingsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [connections, setConnections] = useState([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const options = { method: "GET", headers: { "X-Api-Key": API_KEY } };
@@ -75,69 +76,80 @@ export default function SettingsPage() {
                   <span className="text-sm text-zinc-400">
                     0 of 3 seats in use
                   </span>
-                  <Button
-                    variant="outline"
-                    className="text-blue-400 border-blue-400/20"
-                    onClick={() => {
-                      const options = {
-                        method: "POST",
-                        headers: { "Content-Type": "text/json" },
-                        body: JSON.stringify({
-                          projectId: PROJECT_ID,
-                          groupRef: GROUP_REF,
-                          consumerRef: CONSUMER_REF,
-                          provider: PROVIDER,
-                        }),
-                      };
-                      if (connections.length < 1) {
-                        setIsLoading(true);
-                        fetch(
-                          "https://api.withampersand.com/v1/oauth-connect",
-                          options
-                        )
-                          .then((response) => response.text())
-                          .then((response) => {
-                            console.log("OAuth url for Asana: ", response);
-                            setIsLoading(true);
-                            const newWindow = window.open(
-                              String(response),
-                              "_blank"
-                            );
-                            if (newWindow) {
-                              const timer = setInterval(() => {
-                                if (newWindow.closed) {
-                                  clearInterval(timer);
-                                  const options = {
-                                    method: "GET",
-                                    headers: { "X-Api-Key": API_KEY },
-                                  };
+                  <div className="flex flex-col items-center gap-4">
+                    <Button
+                      variant="outline"
+                      className="text-blue-400 border-blue-400/20"
+                      onClick={() => {
+                        const options = {
+                          method: "POST",
+                          headers: { "Content-Type": "text/json" },
+                          body: JSON.stringify({
+                            projectId: PROJECT_ID,
+                            groupRef: GROUP_REF,
+                            consumerRef: CONSUMER_REF,
+                            provider: PROVIDER,
+                          }),
+                        };
+                        if (connections.length < 1) {
+                          setIsLoading(true);
+                          fetch(
+                            "https://api.withampersand.com/v1/oauth-connect",
+                            options
+                          )
+                            .then((response) => response.text())
+                            .then((response) => {
+                              console.log("OAuth url for Asana: ", response);
+                              setIsLoading(true);
+                              const newWindow = window.open(
+                                String(response),
+                                "_blank"
+                              );
+                              if (newWindow) {
+                                const timer = setInterval(() => {
+                                  if (newWindow.closed) {
+                                    clearInterval(timer);
+                                    const options = {
+                                      method: "GET",
+                                      headers: { "X-Api-Key": API_KEY },
+                                    };
 
-                                  fetch(
-                                    `https://api.withampersand.com/v1/projects/${PROJECT_ID}/connections?provider=${PROVIDER}&groupRef=${GROUP_REF}&consumerRef=${CONSUMER_REF}`,
-                                    options
-                                  )
-                                    .then((response) => response.json())
-                                    .then((response) => {
-                                      console.log(
-                                        "Current connections for Asana for this user: ",
-                                        response
-                                      );
-                                      setConnections(response);
-                                      setIsLoading(false);
-                                    })
-                                    .catch((err) => console.error(err));
-                                }
-                              }, 500);
-                            } else {
-                              setIsLoading(false);
-                            }
-                          })
-                          .catch((err) => console.error(err));
-                      }
-                    }}
-                  >
-                    {connections.length >= 1 ? "Connected" : "Connect"}
-                  </Button>
+                                    fetch(
+                                      `https://api.withampersand.com/v1/projects/${PROJECT_ID}/connections?provider=${PROVIDER}&groupRef=${GROUP_REF}&consumerRef=${CONSUMER_REF}`,
+                                      options
+                                    )
+                                      .then((response) => response.json())
+                                      .then((response) => {
+                                        console.log(
+                                          "Current connections for Asana for this user: ",
+                                          response
+                                        );
+                                        setConnections(response);
+                                        if (Object.keys(response || []).length > 0) {
+                                          setError(null);
+                                        } else {
+                                          setError("Failed to connect to Asana");
+                                        }
+                                        setIsLoading(false);
+                                      })
+                                      .catch((err) => {
+                                        setError(err);
+                                        setIsLoading(false);
+                                      });
+                                  }
+                                }, 500);
+                              } else {
+                                setIsLoading(false);
+                              }
+                            })
+                            .catch((err) => console.error(err));
+                        }
+                      }}
+                    >
+                      {connections.length >= 1 ? "Connected" : "Connect"}
+                    </Button>
+                    {error && <p className="text-red-500 text-xs">{error}</p>}
+                  </div>
                 </div>
               </div>
             </Card>
