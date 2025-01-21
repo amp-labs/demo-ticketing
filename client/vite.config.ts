@@ -9,6 +9,7 @@ export default defineConfig({
           VITE_AMPERSAND_PROJECT_ID: process.env.VITE_AMPERSAND_PROJECT_ID,
           VITE_AMPERSAND_API_KEY: process.env.VITE_AMPERSAND_API_KEY,
           VITE_AMPERSAND_INTEGRATION_ID: process.env.VITE_AMPERSAND_INTEGRATION_ID,
+          BASE_API_URL: process.env.BASE_API_URL,
         },
     },
     server: {

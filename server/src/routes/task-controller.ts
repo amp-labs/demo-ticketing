@@ -16,6 +16,7 @@ export class TaskController {
             // Process tasks in parallel with rate limiting
             const results = await this.processBulkTasks(bulkRequest);
 
+            console.log("Successfully created tasks", results);
             // Return response with results
             res.status(201).json({
                 success: true,
