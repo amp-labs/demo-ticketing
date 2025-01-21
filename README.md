@@ -19,11 +19,9 @@ This is a demo app to demonstrate the use of the Ampersand to build an integrati
 
 Current Support: 
 
-[x] Asana
-
-[ ] Clickup
-
-[ ] Monday.com
+- [x] Asana
+- [ ] Clickup
+- [ ] Monday.com
 
 # Overview 
 
